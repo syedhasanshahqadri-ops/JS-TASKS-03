@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adventure Park</title>
+</head>
+<body>
+
+<script>
+
+var ticketNames = [
+    "Roller Coaster",
+    "Water Park",
+    "Haunted House",
+    "All Access Pass"
+];
+
+var ticketPrices = [800, 600, 400, 1500];
+
+var bookings = [];
+
+alert(
+    "----- ADVENTURE PARK -----\n" +
+    "1. Roller Coaster - Rs. 800\n" +
+    "2. Water Park - Rs. 600\n" +
+    "3. Haunted House - Rs. 400\n" +
+    "4. All Access Pass - Rs. 1500"
+);
+
+var choice = +prompt("Enter your ticket choice:");
+
+var age = +prompt("Enter your age:");
+
+var quantity = +prompt("Enter number of tickets:");
+
+var price = ticketPrices[choice - 1];
+
+var ticket = ticketNames[choice - 1];
+
+var subtotal = price * quantity;
+var discount = 0;
+var extraCharges = 0;
+var finalBill = 0;
+var status = "Confirmed";
+
+if (choice === 1) {
+    alert("Roller Coaster selected!");
+
+    if (age < 12) {
+        alert("Sorry! Roller Coaster is not allowed under age 12.");
+        status = "Rejected";
+    }
+}
+else if (choice === 2) {
+    alert("Water Park selected!");
+}
+else if (choice === 3) {
+    alert("Haunted House selected!");
+}
+else if (choice === 4) {
+    alert("All Access Pass selected!");
+
+    if (choice === 4) {
+        alert("You cannot purchase another ride ticket with All Access Pass.");
+    }
+}
+else {
+    alert("Invalid ticket choice!");
+    status = "Rejected";
+}
+
+if (quantity >= 1) {
+
+    if (quantity >= 4) {
+        discount = subtotal * 10 / 100;
+        alert("Congratulations! You got 10% discount.");
+    }
+    else {
+        discount = 0;
+        alert("No discount available.");
+    }
+
+}
+else {
+    alert("Invalid quantity!");
+    status = "Rejected";
+}
+
+if (status === "Confirmed") {
+
+    finalBill = subtotal - discount;
+
+    var booking = {
+        ticket: ticket,
+        age: age,
+        quantity: quantity,
+        subtotal: subtotal,
+        discount: discount,
+        finalBill: finalBill,
+        status: status
+    };
+
+    bookings.push(booking);
+
+    console.log("----- ADVENTURE PARK BOOKING -----");
+    console.log("Ticket:", ticket);
+    console.log("Age:", age);
+    console.log("Quantity:", quantity);
+    console.log("Subtotal:", subtotal);
+    console.log("Discount:", discount);
+    console.log("Final Bill:", finalBill);
+    console.log("Booking Status:", status);
+
+    var cancel = prompt("Do you want to cancel last booking? Yes/No");
+
+    if (cancel === "Yes") {
+        bookings.pop();
+        alert("Last booking cancelled!");
+    }
+
+    var removeFirst = prompt("Do you want to remove first booking? Yes/No");
+
+    if (removeFirst === "Yes") {
+
+        if (bookings.length > 0) {
+            bookings.shift();
+            alert("First booking removed!");
+        }
+        else {
+            alert("No booking available!");
+        }
+
+    }
+
+    console.log("Remaining Bookings:", bookings);
+
+}
+
+</script>
+
+</body>
+</html>

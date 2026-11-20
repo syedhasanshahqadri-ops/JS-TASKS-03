@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var menuItems = [
+    "Chicken Biryani",
+    "Beef Biryani",
+    "Chicken Pulao",
+    "Special Biryani"
+];
+
+var prices = [350, 450, 300, 550];
+
+alert(
+    "----- ROYAL BIRYANI -----\n" +
+    "1. Chicken Biryani - Rs. 350\n" +
+    "2. Beef Biryani - Rs. 450\n" +
+    "3. Chicken Pulao - Rs. 300\n" +
+    "4. Special Biryani - Rs. 550"
+);
+var choice = +prompt("Enter your choice:");
+
+if(choice === 1){
+    alert("you selected chicken biryani")
+}
+else if (choice === 2){
+    alert("you selected beef biryani")
+}
+else if (choice === 3){
+    alert("you selected chicken pulao")
+}
+else if (choice === 4){
+    alert("you selected special biryani")
+}
+else{ 
+    alert("invalid value!")
+}
+var price = prices[choice - 1];
+var quantity = +prompt("Enter your number of plates:");
+
+var subtotal = price * quantity;
+console.log(subtotal);
+var discount = (subtotal * 10) / 100;
+if (quantity >= 1) {
+    if (quantity >= 5) {
+        var discount = (subtotal * 10) / 100;
+        alert("You will receive a 10% discount!");
+    }
+    else {
+        var discount = 0;
+        alert("No discount available.");
+    }
+}
+else {
+    alert("Invalid quantity!");
+}
+var orderType = prompt("Enter Dine-in or Takeaway:");
+var orderType = prompt("Enter Dine-in or Takeaway:");
+
+if (orderType === "Dine-in") {
+    alert("Dine-in selected. Service charges: Rs. 50");
+}
+else if (orderType === "Takeaway") {
+    alert("Takeaway selected. Packaging charges: Rs. 30");
+}
+var extraCharges = 0;
+
+if (orderType === "Dine-in") {
+    extraCharges = 50;
+}
+else if (orderType === "Takeaway") {
+    extraCharges = 30;
+}
+else {
+    alert("Invalid order type!");
+}
+var finalBill = subtotal - discount + extraCharges;
+// Store the customer's order
+var orders = [];
+
+var order = {
+    item: menuItems[choice - 1],
+    quantity: quantity,
+    price: price,
+    subtotal: subtotal,
+    discount: discount,
+    orderType: orderType,
+    extraCharges: extraCharges,
+    finalBill: finalBill
+};
+
+orders.push(order);
+
+// Display final bill
+console.log("----- ROYAL BIRYANI -----");
+console.log("Item:", order.item);
+console.log("Quantity:", order.quantity);
+console.log("Price:", order.price);
+console.log("Subtotal:", order.subtotal);
+console.log("Discount:", order.discount);
+console.log("Order Type:", order.orderType);
+console.log("Extra Charges:", order.extraCharges);
+console.log("Final Bill:", order.finalBill);
+
+// Cancel the last order using pop()
+var cancel = prompt("Do you want to cancel the last order? Yes/No");
+
+if (cancel === "Yes") {
+    orders.pop();
+    alert("Last order cancelled!");
+}
+
+// Remove the first pending order using shift()
+var removeFirst = prompt("Do you want to remove the first pending order? Yes/No");
+
+if (removeFirst === "Yes") {
+    if (orders.length > 0) {
+        orders.shift();
+        alert("First order removed!");
+    }
+    else {
+        alert("No pending orders!");
+    }
+}
+
+console.log("Remaining Orders:", orders);;
+
+    </script>
+</body>
+</html>
